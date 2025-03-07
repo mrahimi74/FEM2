@@ -49,7 +49,7 @@ The **FEM** is a numerical method to solve partial differential equations.
 
 To install this package, please begin by setting up a conda environment:
 ```bash
-conda create --name FEM-env python=3.12
+conda create --name FEM2-env python=3.12
 ```
 Once the environment has been created, activate it:
 
@@ -70,7 +70,7 @@ pip install -e .
 ```
 Test that the code is working with pytest:
 ```bash
-pytest -v --cov=FEM --cov-report term-missing
+pytest -v --cov=FEM2 --cov-report term-missing
 ```
 Code coverage should be 97%. Now you are prepared to write your own code based on this method and/or run the tutorial. 
 
