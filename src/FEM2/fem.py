@@ -1,5 +1,5 @@
 import numpy as np
-import utils as MSA
+from FEM2 import utils as MSA
 import scipy as sp
 import matplotlib.pyplot as plt
 
