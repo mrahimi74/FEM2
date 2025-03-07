@@ -2,6 +2,7 @@ import pytest
 import numpy as np
 from FEM2 import fem
 import matplotlib.pyplot as plt
+from FEM2 import utils as MSA
 
 
 def test_node():
