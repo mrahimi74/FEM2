@@ -50,7 +50,7 @@ def test_solver():
     F = np.array([0, 0, -10, 0, 0, 0, 0, 0, -10, 0, 0, 0])
     
     fem_solver = fem.solver(num_nodes, dof_per_node, K, BC, F)
-    u_total, forces = fem_solver.solve()
+    u_total, forces,_,_ = fem_solver.solve()
     
     assert isinstance(u_total, np.ndarray)
     assert isinstance(forces, np.ndarray)
