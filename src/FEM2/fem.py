@@ -218,13 +218,10 @@ def critical(k,kg, num_nodes, dof_per_node, id):
 
 def buckled(u, coords, ID, scale:float=1.0,int_pts:int=20,axis_equal:bool=False):
 
-    t_int = np.linspace(0,1,int_pts)
-    hermite_u = []
-    hermite_v = []
-    hermite_w = []
     fig= plt.figure(figsize=(10,10))
     ax = fig.add_subplot(111,projection='3d')
     for i in ID:
+        t_int = np.linspace(0,1,int_pts)
         u1 = u[6*i[0]:6*i[0]+6]
         u2 = u[6*i[1]:6*i[1]+6]
         X1 = coords[i[0]]
@@ -236,6 +233,9 @@ def buckled(u, coords, ID, scale:float=1.0,int_pts:int=20,axis_equal:bool=False)
         gamma = MSA.rotation_matrix_3D(X1[0], X1[1], X1[2], X2[0], X2[1], X2[2])
         U1 = gamma @ u1[:3]
         U2 = gamma @ u2[:3]
+        hermite_u = []
+        hermite_v = []
+        hermite_w = []
         for cur_t in t_int:
             u_ = hermite_shape_func_transverse(L,cur_t,U1[0],U2[0],u1[-1],u2[-1])
             v_ = hermite_shape_func_transverse(L,cur_t,U1[1],U2[1],u1[-3],u2[-3])
@@ -246,7 +246,7 @@ def buckled(u, coords, ID, scale:float=1.0,int_pts:int=20,axis_equal:bool=False)
         hermite_u = np.array(hermite_u)
         hermite_v = np.array(hermite_v)
         hermite_w = np.array(hermite_w)
-        local_disps_all = np.concatenate((hermite_u.reshape(-1,1),hermite_v.reshape(-1,1),hermite_w.reshape(-1,1)),axis=1)
+        local_disps_all =  np.concatenate((hermite_u.reshape(-1,1),hermite_v.reshape(-1,1),hermite_w.reshape(-1,1)),axis=1)
         global_disps_all = gamma.T@local_disps_all.T
 
         x_buckled = np.linspace(X1[0],X2[0],int_pts)
